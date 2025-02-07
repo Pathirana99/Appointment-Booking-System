@@ -79,7 +79,7 @@ input {
     text-align: center;
   }
   .signUpButton{
-    background-color: rgb(146, 131, 205);
+    background-color: rgb(146, 131, 206);
     color: white;
     padding: 5px;
     border-radius: 10px;
@@ -88,5 +88,5 @@ input {
     cursor: pointer;
   }
   .signUpButton:hover{
-    background-color: rgb(108, 89, 185);
+    background-color: rgb(107, 88, 184);
   }
