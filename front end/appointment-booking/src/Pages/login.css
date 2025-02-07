@@ -8,25 +8,26 @@ body {
     display: flex;
     height: 100vh;
     background-image: url('../images/nature.jpg');
-    
+    justify-content: center;
+    align-items: center;
 }
 .loginContent {
-   width: 300px;
-   height: 450px;
-   background-color: rgba(164, 214, 245, 0.747);
+   width: 40%;
+   height: 60%;
+   background-color: rgba(208, 220, 228, 0.711);
    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   margin: auto 30px;
+   
    border-radius: 20px;
 }
 
 .loginHeader {
-    background-color: #19a3b3;
+    background-color: #5ad1ef;
     color: rgb(0, 0, 0);
-    padding: 10px 20px;
+    padding: 0px 20px;
     border-radius: 10px;
     text-align: center;
     margin-bottom: 20px;
