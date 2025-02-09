@@ -8,6 +8,9 @@ import com.example.demo.Repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class AppointmentService {
     @Autowired
@@ -29,5 +32,18 @@ public class AppointmentService {
         appointment = appointmentRepo.save(appointment);
         appointmentDto.setId(appointment.getId());
         return appointmentDto;
+    }
+
+    public List<AppointmentDto> getAppointment(Integer userId) {
+        List<Appointment> appointments = appointmentRepo.findByUserId(userId);
+        return appointments.stream()
+                .map(appointment -> new AppointmentDto(
+                        appointment.getId(),
+                        appointment.getDate(),
+                        appointment.getTime(),
+                        appointment.getName(),
+                        appointment.getContact()
+                ))
+                .collect(Collectors.toList());
     }
 }
