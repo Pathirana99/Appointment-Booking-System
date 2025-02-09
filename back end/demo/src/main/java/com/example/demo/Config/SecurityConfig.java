@@ -63,7 +63,8 @@ public class SecurityConfig {
                 .cors(withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/user/save", "/loginUser/login",
-                                "/appointment/save/{userid}", "/appointment/user/{userId}").permitAll()
+                                "/appointment/save/{userid}", "/appointment/user/{userId}",
+                                "/timeslot/create").permitAll()
                         //.requestMatchers("/admin/all", "/admin/count").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )

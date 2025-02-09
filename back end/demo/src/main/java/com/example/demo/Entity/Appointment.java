@@ -25,6 +25,5 @@ public class Appointment {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToOne(mappedBy = "appointment", cascade = CascadeType.ALL)
-    private TimeSlot timeSlot;
+
 }
