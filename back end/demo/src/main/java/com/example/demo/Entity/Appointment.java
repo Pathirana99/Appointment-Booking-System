@@ -15,6 +15,7 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String date;
     private Time time;
     private String name;
@@ -24,4 +25,6 @@ public class Appointment {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @OneToOne(mappedBy = "appointment", cascade = CascadeType.ALL)
+    private TimeSlot timeSlot;
 }
