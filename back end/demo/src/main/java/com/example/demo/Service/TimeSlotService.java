@@ -1,8 +1,11 @@
 package com.example.demo.Service;
 
 import com.example.demo.Dto.TimeSlotDto;
+import com.example.demo.Dto.TimeSlotRemoveDto;
 import com.example.demo.Entity.TimeSlot;
+import com.example.demo.Repo.AppointmentRepo;
 import com.example.demo.Repo.TimeSlotRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,8 @@ import java.util.List;
 public class TimeSlotService {
     @Autowired
     private TimeSlotRepo timeSlotRepo;
+    @Autowired
+    private AppointmentRepo appointmentRepo;
 
     public List<TimeSlot> createTimeSlots(TimeSlotDto timeSlotDto) {
         List<TimeSlot> timeSlots = new ArrayList<>();
@@ -34,6 +39,20 @@ public class TimeSlotService {
     }
 
     public List<TimeSlot> getAllTimeSlots() {
-        return timeSlotRepo.findAll();
+        // Fetching all time slots sorted by startTime in ascending order
+        return timeSlotRepo.findAllBy();
+    }
+
+
+    @Transactional // Add this annotation
+    public void deleteTimeSlot(TimeSlotRemoveDto timeSlotRemoveDto) {
+        Time startTime = timeSlotRemoveDto.getStartTime();
+        timeSlotRepo.deleteByStartTime(startTime);
+    }
+
+    public TimeSlot addTimeSlot(TimeSlotDto timeSlotDto) {
+        TimeSlot slot = new TimeSlot();
+        slot.setStartTime(timeSlotDto.getStartTime());
+        return timeSlotRepo.save(slot);
     }
 }

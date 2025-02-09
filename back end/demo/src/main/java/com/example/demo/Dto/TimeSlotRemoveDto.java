@@ -9,8 +9,6 @@ import java.sql.Time;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class TimeSlotDto {
-    private Integer id;
+public class TimeSlotRemoveDto {
     private Time startTime;
-    private Time endTime;
 }

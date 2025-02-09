@@ -6,14 +6,13 @@ import lombok.*;
 import java.sql.Time;
 
 @Entity
-@Table(name = "time_slots")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class TimeSlot {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     private Time startTime;
 }

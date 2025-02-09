@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Dto.TimeSlotDto;
+import com.example.demo.Dto.TimeSlotRemoveDto;
 import com.example.demo.Entity.TimeSlot;
 import com.example.demo.Service.TimeSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,17 @@ public class TimeSlotController {
     @GetMapping("/get")
     public List<TimeSlot> getAllTimeSlots() {
         return service.getAllTimeSlots();
+    }
+
+
+    @DeleteMapping("/delete")
+    public String deleteTimeSlot(@RequestBody TimeSlotRemoveDto timeSlotRemoveDto) {
+        service.deleteTimeSlot(timeSlotRemoveDto);
+        return "Time slot deleted successfully";
+    }
+
+    @PostMapping("/add")
+    public TimeSlot addTimeSlot(@RequestBody TimeSlotDto timeSlotDto) {
+        return service.addTimeSlot(timeSlotDto);
     }
 }
