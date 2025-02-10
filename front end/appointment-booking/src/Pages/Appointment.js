@@ -51,16 +51,13 @@ export default function Appointment() {
       alert("User is not logged in.");
       return;
     }
-
-    // Prepare appointment data
     const appointmentData = {
       name,
       contact,
-      date: selectedDate, // Make sure the date is in the correct format
-      time: selectedTime,  // The selected time should match your API's format
+      date: selectedDate,
+      time: selectedTime,
     };
 
-    // Send the request to save the appointment
     axios
       .post(`http://localhost:8080/appointment/save/${userId}`, appointmentData)
       .then((response) => {
@@ -79,7 +76,6 @@ export default function Appointment() {
       </div>
       <div className="Form">
         <form onSubmit={handleSubmit}>
-          {/* Name Field */}
           <div className="Group">
             <label htmlFor="name">Name</label>
             <input
@@ -92,7 +88,6 @@ export default function Appointment() {
             />
           </div>
 
-          {/* Contact Field */}
           <div className="Group">
             <label htmlFor="contact">Contact</label>
             <input
@@ -105,7 +100,6 @@ export default function Appointment() {
             />
           </div>
 
-          {/* Date Field */}
           <div className="Group">
             <label htmlFor="date">Date</label>
             <input
@@ -117,7 +111,6 @@ export default function Appointment() {
             />
           </div>
 
-          {/* Time Slot Selection */}
           <div className="Group">
             <label htmlFor="time">Available Time Slots</label>
             <div className="timeSlots">
