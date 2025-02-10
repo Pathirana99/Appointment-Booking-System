@@ -1,12 +1,15 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Dto.TimeSlotDto;
-import com.example.demo.Dto.TimeSlotRemoveDto;
 import com.example.demo.Entity.TimeSlot;
 import com.example.demo.Service.TimeSlotService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -20,20 +23,16 @@ public class TimeSlotController {
         return service.createTimeSlots(timeSlotDto);
     }
 
-    @GetMapping("/get")
-    public List<TimeSlot> getAllTimeSlots() {
-        return service.getAllTimeSlots();
+    @GetMapping("/get/{date}")
+    public List<TimeSlot> getAllTimeSlots(@PathVariable LocalDate date) {
+        return service.getAllTimeSlots(date);
     }
-
-
     @DeleteMapping("/delete")
-    public String deleteTimeSlot(@RequestBody TimeSlotRemoveDto timeSlotRemoveDto) {
-        service.deleteTimeSlot(timeSlotRemoveDto);
-        return "Time slot deleted successfully";
+    public ResponseEntity<String> deleteTimeSlot(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            @RequestParam Time startTime) {
+        service.deleteTimeSlot(date, startTime);
+        return ResponseEntity.ok("Time slot deleted successfully");
     }
 
-    @PostMapping("/add")
-    public TimeSlot addTimeSlot(@RequestBody TimeSlotDto timeSlotDto) {
-        return service.addTimeSlot(timeSlotDto);
-    }
 }

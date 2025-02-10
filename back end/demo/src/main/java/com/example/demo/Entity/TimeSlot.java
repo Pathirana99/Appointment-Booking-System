@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Time;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -14,5 +15,6 @@ public class TimeSlot {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    private LocalDate date;
     private Time startTime;
 }
