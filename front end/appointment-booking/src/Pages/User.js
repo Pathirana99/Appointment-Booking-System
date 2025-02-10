@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./user.css";
 import { jwtDecode } from "jwt-decode";
-//import axios from "axios";
+import axios from "axios";
 
 export default function User() {
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  //const [userId, setUserId] = useState("");
+  const [appointments, setAppointments] = useState([]);
+
 
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
@@ -15,9 +16,21 @@ export default function User() {
       const decodedJwt = jwtDecode(jwt);
       setUsername(decodedJwt.username);
       setEmail(decodedJwt.email);
-      //setUserId(decodedJwt.userId);
+
+      fetchAppointments(decodedJwt.userId);
     }
   }, []);
+
+  const fetchAppointments = async (userId) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/appointment/user/${userId}`);
+      setAppointments(response.data); // Assuming the response contains the appointment array
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
+    }
+  };
+
+
   const handleLogout = () => {
     localStorage.removeItem("jwt");
     localStorage.removeItem("username");
@@ -25,10 +38,6 @@ export default function User() {
 
     window.location.href = "/";
   };
-
-  const appoinments = [
-    { id: 1, name: "sunith", contact: "0776117695", date: "2024.02.02", time:"08.00" },
-    ];
 
   return (
     <div className="home">
@@ -53,7 +62,7 @@ export default function User() {
             </tr>
           </thead>
           <tbody>
-            {appoinments.map((appoinments, index) => (
+            {appointments.map((appoinments, index) => (
               <tr key={appoinments.id}>
                 <td>{index + 1}</td>
                 <td>{appoinments.name}</td>

@@ -12,10 +12,6 @@ import java.util.List;
 public interface TimeSlotRepo extends JpaRepository<TimeSlot, Integer> {
     @Modifying
     @Transactional
-    void deleteByStartTime(Time startTime);
-    List<TimeSlot> findAllBy();
-    List<TimeSlot> findAllByDateOrderByStartTimeAsc(LocalDate date);
-    @Modifying
-    @Transactional
     void deleteByDateAndStartTime(LocalDate date, Time startTime);
+    List<TimeSlot> findAllByDateOrderByStartTimeAsc(LocalDate date);
 }

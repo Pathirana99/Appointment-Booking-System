@@ -24,7 +24,6 @@ public class JwtUtill {
         byte[] keyBytes = SECRET_KEY.getBytes();
         return new SecretKeySpec(keyBytes, "HmacSHA256");
     }
-    //Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     private final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 

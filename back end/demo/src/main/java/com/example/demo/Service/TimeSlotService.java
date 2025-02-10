@@ -30,7 +30,6 @@ public class TimeSlotService {
             slot.setStartTime(current);
             timeSlots.add(slot);
 
-            // Add 15 minutes to the current time
             long newTimeInMs = current.getTime() + (15 * 60 * 1000);
             current = new Time(newTimeInMs);
         }
