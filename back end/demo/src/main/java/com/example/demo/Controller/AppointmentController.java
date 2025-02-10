@@ -23,4 +23,9 @@ public class AppointmentController {
     public List<AppointmentDto> getAppointmentsByUserId(@PathVariable Integer userId) {
         return service.getAppointment(userId);
     }
+
+    @GetMapping("/all")
+    public List<AppointmentDto> getAllAppointments() {
+        return service.getAllAppointments();
+    }
 }

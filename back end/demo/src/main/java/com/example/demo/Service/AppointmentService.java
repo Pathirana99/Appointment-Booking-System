@@ -46,4 +46,17 @@ public class AppointmentService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    public List<AppointmentDto> getAllAppointments() {
+        List<Appointment> appointments = appointmentRepo.findAll();  // Fetching all appointments
+        return appointments.stream()
+                .map(appointment -> new AppointmentDto(
+                        appointment.getId(),
+                        appointment.getDate(),
+                        appointment.getTime(),
+                        appointment.getName(),
+                        appointment.getContact()
+                ))
+                .collect(Collectors.toList());
+    }
 }

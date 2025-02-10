@@ -1,134 +1,159 @@
 body {
-  background: linear-gradient(to bottom, #ffffff, #0477dcb6);
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .home {
-    display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .profilePic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: #4a44ebf8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .profileLetter {
-    font-size: 50px;
-    color: #ffffff;
-    font-weight: bold;
-  }
-  
-  .userName {
-    background-color: #85d8ff;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-size: 16px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .logOut {
-    background-color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s;
-  }
-  
-  .logOut:hover {
-    background-color: #cececf;
-  }
-  
-  .mainContent {
+  background: linear-gradient(to bottom, #ffffff, #0088ffd0);
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
-    background-color: rgba(208, 220, 228, 0.64);
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    width: 60%;
-    height: 100%;
+.home {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.profilePic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #4a45dff8;
+  margin-bottom: 20px;
+}
+
+.profileLetter {
+  font-size: 60px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.userName {
+  background-color: #85d8ff;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.logOut {
+  background-color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  color: #dc0404;
+  cursor: pointer;
+}
+
+.logOut:hover {
+  background-color: #cececf;
+}
+
+.mainContent {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(225, 231, 235, 0.838);
+  border-radius: 20px;
+  display: flex;
+  padding: 40px;
+  width: 60%;
+  max-width: 800px;
+  min-height: 70%;
+}
+
+.addButton {
+  background-color: #ff0000;
+  padding: 12px 40px;
+  border-radius: 25px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.addButton:hover {
+  background-color: #d50000;
+  transform: translateY(-2px);
+}
+
+.userTable {
+  width: 100%;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+}
+
+.userTable th {
+  font-weight: bold;
+  padding: 16px;
+  text-align: left;
+  background-color: #0477dc;
+  color: white;
+  font-size: 16px;
+}
+
+.userTable td {
+  padding: 16px;
+  color: #333;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+.deleteButton {
+  padding: 10px 16px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.deleteButton {
+  background-color: #e53935;
+  color: white;
+}
+
+.deleteButton:hover {
+  background-color: #c62828;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    width: 90%;
+    padding: 20px;
   }
+
+  .userName {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+
   .addButton {
-    background-color: #ff1744;
-    padding: 10px 40px;
-    border-radius: 20px;
-    color: white;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin: 20px;
-  }
-  
-  .addButton:hover {
-    background-color: #d50000;
-  }
-  .userTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 16px;
-    text-align: left;
-  }
-  
-  .userTable th {
-    padding: 12px;
-    border: none;
-  }
-  .userTable td{
-    padding: 12px;
-    border: none;
-    background-color: #ffffff;
-  }
-  
-  .userTable th {
-    background-color: #4caf4f00;
-    color: white;
-  }
-  
-  .userTable tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .editButton, .deleteButton {
-    padding: 8px 12px;
-    margin: 0 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 10px 30px;
     font-size: 14px;
   }
-  
-  .editButton {
-    background-color: #0288d1;
-    color: white;
+
+  .logOut {
+    padding: 10px 20px;
+    font-size: 13px;
   }
-  
-  .deleteButton {
-    background-color: #e53935;
-    color: white;
+
+  .userTable th,
+  .userTable td {
+    padding: 10px;
+    font-size: 13px;
   }
-  
-  .editButton:hover {
-    background-color: #0277bd;
-  }
-  
-  .deleteButton:hover {
-    background-color: #c62828;
-  }
+}

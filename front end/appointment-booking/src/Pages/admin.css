@@ -1,0 +1,174 @@
+body {
+    font-family: "Arial", sans-serif;
+    background: linear-gradient(to bottom, #e0f7fa, #b2ebf2);
+    margin: 0;
+    padding: 0;
+  }
+  
+  .home1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .mainContent1 {
+    width: 90%;
+    max-width: 1200px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .admin1 {
+    font-size: 35px;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .timeSlots1 {
+    background-color: #80deea;
+    display: flex;
+    flex-direction: column; /* Aligns content properly */
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+  
+  .fieldsContainer1 {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: nowrap;
+    width: 100%;
+    margin-bottom: 20px;
+}
+  
+.fields1 {
+    flex: 1;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+ 
+.fields1 input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+  .fields1 input:focus {
+    border-color: #00796b;
+    outline: none;
+  }
+  
+  .add1 {
+    padding: 12px 30px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .add1:hover {
+    background-color: #e64a19;
+  }
+  
+  .tableContainer1 {
+    max-height: 400px;
+    overflow-y: auto;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .userTable1 {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  .userTable1 th,
+  .userTable1 td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+  
+  .userTable1 th {
+    background-color: #00796b;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .userTable1 td {
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .userTable1 tr:hover {
+    background-color: #b2ebf2;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Log Out button */
+  .logOut1 {
+    display: block;
+    width: 250px;
+    padding: 15px;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .logOut1:hover {
+    background-color: #b71c1c;
+    transform: translateY(-3px);
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media (max-width: 768px) {
+    .fieldsContainer1 {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .fields1 {
+      width: 100%;
+    }
+  
+    .add1 {
+      width: 100%;
+    }
+  
+    .logOut1 {
+      width: 100%;
+    }
+  }
+  
