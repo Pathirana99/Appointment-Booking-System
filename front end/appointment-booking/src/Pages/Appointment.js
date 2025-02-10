@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./appointment.css";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+
 
 
 export default function Appointment() {
@@ -11,6 +13,7 @@ export default function Appointment() {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [userId, setId] = useState("");
+  const navigate = useNavigate();
 
   // Fetch time slots for the selected date
   const fetchTimeSlots = async (date) => {
@@ -61,11 +64,22 @@ export default function Appointment() {
     axios
       .post(`http://localhost:8080/appointment/save/${userId}`, appointmentData)
       .then((response) => {
-        alert("Appointment booked successfully!");
-        console.log("Response:", response.data);
+        deleteTimeSlot(selectedDate, selectedTime);
+        navigate("/User");
       })
       .catch((error) => {
         console.error("Error booking appointment:", error);
+      });
+  };
+
+  const deleteTimeSlot = (date, time) => {
+    axios
+      .delete(`http://localhost:8080/timeslot/delete?date=${date}&startTime=${time}`)
+      .then((response) => {
+        console.log("Time slot deleted successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error deleting time slot:", error);
       });
   };
 
