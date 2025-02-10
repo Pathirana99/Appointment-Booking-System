@@ -1,0 +1,150 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./appointment.css";
+import { jwtDecode } from "jwt-decode";
+
+
+export default function Appointment() {
+  const [timeSlots, setTimeSlots] = useState([]);
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [userId, setId] = useState("");
+
+  // Fetch time slots for the selected date
+  const fetchTimeSlots = async (date) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/timeslot/get/${date}`);
+      setTimeSlots(response.data);
+    } catch (error) {
+      console.error("Error fetching time slots:", error);
+    }
+  };
+   useEffect(() => {
+      const jwt = localStorage.getItem("jwt");
+      if (jwt) {
+        const decodedJwt = jwtDecode(jwt);
+        setId(decodedJwt.userId);
+      }
+    }, []);
+
+  const handleDateChange = (event) => {
+    const date = event.target.value;
+    setSelectedDate(date);
+    fetchTimeSlots(date);
+  };
+
+  const handleTimeSelect = (time) => {
+    setSelectedTime(time);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!name || !contact || !selectedDate || !selectedTime) {
+      alert("Please fill all the fields and select a time slot.");
+      return;
+    }
+
+    if (!userId) {
+      alert("User is not logged in.");
+      return;
+    }
+
+    // Prepare appointment data
+    const appointmentData = {
+      name,
+      contact,
+      date: selectedDate, // Make sure the date is in the correct format
+      time: selectedTime,  // The selected time should match your API's format
+    };
+
+    // Send the request to save the appointment
+    axios
+      .post(`http://localhost:8080/appointment/save/${userId}`, appointmentData)
+      .then((response) => {
+        alert("Appointment booked successfully!");
+        console.log("Response:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error booking appointment:", error);
+      });
+  };
+
+  return (
+    <div className="appointment">
+      <div className="Header">
+        <h2>Book an Appointment</h2>
+      </div>
+      <div className="Form">
+        <form onSubmit={handleSubmit}>
+          {/* Name Field */}
+          <div className="Group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          {/* Contact Field */}
+          <div className="Group">
+            <label htmlFor="contact">Contact</label>
+            <input
+              type="text"
+              id="contact"
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
+              placeholder="Enter your contact number"
+              required
+            />
+          </div>
+
+          {/* Date Field */}
+          <div className="Group">
+            <label htmlFor="date">Date</label>
+            <input
+              type="date"
+              id="date"
+              value={selectedDate}
+              onChange={handleDateChange}
+              required
+            />
+          </div>
+
+          {/* Time Slot Selection */}
+          <div className="Group">
+            <label htmlFor="time">Available Time Slots</label>
+            <div className="timeSlots">
+              {timeSlots.length > 0 ? (
+                timeSlots.map((slot) => (
+                  <button
+                    type="button"
+                    key={slot.id}
+                    className={`timeSlot ${
+                      selectedTime === slot.startTime ? "selected" : ""
+                    }`}
+                    onClick={() => handleTimeSelect(slot.startTime)}
+                  >
+                    {slot.startTime}
+                  </button>
+                ))
+              ) : (
+                <p>No time slots available for the selected date.</p>
+              )}
+            </div>
+          </div>
+
+          <button type="submit" className="submit">
+            Book Appointment
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}

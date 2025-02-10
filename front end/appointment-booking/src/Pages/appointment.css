@@ -1,0 +1,85 @@
+.appointment {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(to bottom, #f0f8ff, #ffffff);
+    height: 100vh;
+  }
+  
+  .Header h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .Form {
+    width: 400px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Group {
+    margin-bottom: 20px;
+  }
+  
+  .Group label {
+    display: block;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  
+  .Group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  
+  .timeSlots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .timeSlot {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .timeSlot.selected {
+    background-color: #f44336;
+    color: #fff;
+    border-color: #f44336;
+  }
+  
+  .timeSlot:hover {
+    background-color: #ddd;
+  }
+  
+  .submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #f44336;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit:hover {
+    background-color: #d32f2f;
+  }
+  

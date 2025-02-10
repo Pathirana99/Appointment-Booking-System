@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./user.css";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 export default function User() {
 
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [appointments, setAppointments] = useState([]);
@@ -24,7 +27,7 @@ export default function User() {
   const fetchAppointments = async (userId) => {
     try {
       const response = await axios.get(`http://localhost:8080/appointment/user/${userId}`);
-      setAppointments(response.data); // Assuming the response contains the appointment array
+      setAppointments(response.data);
     } catch (error) {
       console.error("Error fetching appointments:", error);
     }
@@ -48,9 +51,9 @@ export default function User() {
         
         <div className="userName">{email}</div>
       
-        <button className="addButton" >
-        To get an appointment
-          </button>
+        <button className="addButton" onClick={() => navigate("/appointment")}>
+  To get an appointment
+</button>
           <table className="userTable">
           <thead>
           <tr>
