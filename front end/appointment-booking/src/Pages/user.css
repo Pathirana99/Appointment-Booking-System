@@ -29,8 +29,8 @@ body {
   }
   
   .userName {
-    background-color: #b3e5fc;
-    padding: 10px 20px;
+    background-color: #85d8ff;
+    padding: 5px 10px;
     border-radius: 10px;
     font-size: 16px;
     margin-bottom: 20px;
@@ -63,16 +63,6 @@ body {
     padding: 30px;
     width: 60%;
     height: 100%;
-  }
-  
-  .header {
-    background-color: #b3e5fc;
-    padding: 10px 20px;
-    border-radius: 10px;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: bold;
   }
   .addButton {
     background-color: #ff1744;
