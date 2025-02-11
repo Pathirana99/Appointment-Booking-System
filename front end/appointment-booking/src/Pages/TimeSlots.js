@@ -36,7 +36,7 @@ export default function TimeSlots() {
 
   return (
     <div className="slotsContainer">
-      <h2>Available Time Slots</h2>
+      <h2 className="text1">Available Time Slots</h2>
       <table className="slotsTable">
         <thead>
           <tr>

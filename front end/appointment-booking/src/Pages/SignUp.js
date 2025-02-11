@@ -79,7 +79,7 @@ export default function SignUp() {
           />
       <div className="signUpContent">
         <div className="signUpHeader">
-          <h2>SignUp</h2>
+          <h2 className="text">SignUp</h2>
         </div>
         <div className="signUpForm">
         <div className="formSection">

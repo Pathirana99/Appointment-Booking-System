@@ -182,4 +182,9 @@ body {
       width: 100%;
     }
   }
+  @media (max-width: 576px) {
+ .admin1{
+  font-size: 20px;
+ }
+  }
   

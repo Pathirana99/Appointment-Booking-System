@@ -90,3 +90,31 @@ input {
   .signUpButton:hover{
     background-color: rgb(107, 88, 184);
   }
+
+  @media (max-width: 768px) {
+    .loginHeader {
+        border-radius: 10px;
+    }
+  .loginContent{
+   width: 70%;
+  }
+  }
+
+  @media (max-width: 576px) {
+    .loginHeader {
+        border-radius: 10px;
+    }
+  .text{
+    font-size: medium;
+  }
+  .loginContent{
+   width: 80%;
+  }
+  }
+  /* @media (max-width: 300px) {
+  .underText{
+    
+  }
+  } */
+
+  

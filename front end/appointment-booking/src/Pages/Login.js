@@ -91,7 +91,7 @@ export default function Login() {
           />
       <div className="loginContent">
         <div className="loginHeader">
-          <h2>Login</h2>
+          <h2 className="text">Login</h2>
         </div>
         <div className="loginForm">
           <div className="formSection">
@@ -118,7 +118,7 @@ export default function Login() {
           <button className="loginButton" onClick={handleLogin}>
             Login
           </button>
-          <h9>If you don't have an account, please sign up</h9>
+          <h9 className="underText">If you don't have an account, please sign up</h9>
           <button className="signUpButton" onClick={handleSignUp}>
             SignUp
           </button>
