@@ -14,4 +14,6 @@ public interface TimeSlotRepo extends JpaRepository<TimeSlot, Integer> {
     @Transactional
     void deleteByDateAndStartTime(LocalDate date, Time startTime);
     List<TimeSlot> findAllByDateOrderByStartTimeAsc(LocalDate date);
+
+    List<TimeSlot> findAllByOrderByDateAscStartTimeAsc();
 }

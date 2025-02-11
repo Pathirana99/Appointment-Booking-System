@@ -1,12 +1,14 @@
 import "./admin.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 export default function Admin() {
   const [appointments, setAppointments] = useState([]);
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
     const email = localStorage.getItem("userEmail");
@@ -85,6 +87,10 @@ export default function Admin() {
     window.location.href = "/";
   };
 
+  const handleTimeSlots = () => {
+    navigate("/TimeSlots"); // Use navigate to go to TimeSlots page
+  };
+
   return (
     <div className="home1">
       <div className="mainContent1">
@@ -119,6 +125,9 @@ export default function Admin() {
           </div>
           <button className="add1" type="submit" onClick={handleAddTime}>
             ADD AVAILABLE TIME
+          </button>
+          <button className="add2" type="button" onClick={handleTimeSlots}>
+            SHOW TIME SLOTS
           </button>
         </form>
 

@@ -92,7 +92,20 @@ body {
   .add1:hover {
     background-color: #e64a19;
   }
-  
+  .add2{
+    padding: 12px 30px;
+    background-color: #02881f;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .add2:hover{
+    background-color: #046c1b;
+  }
   .tableContainer1 {
     max-height: 400px;
     overflow-y: auto;
@@ -131,8 +144,7 @@ body {
     background-color: #b2ebf2;
     transition: background-color 0.3s ease;
   }
-  
-  /* Log Out button */
+
   .logOut1 {
     display: block;
     width: 250px;

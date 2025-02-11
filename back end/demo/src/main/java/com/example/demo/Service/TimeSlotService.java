@@ -45,4 +45,7 @@ public class TimeSlotService {
     public void deleteTimeSlot(LocalDate date, Time startTime) {
         timeSlotRepo.deleteByDateAndStartTime(date, startTime);
     }
+    public List<TimeSlot> getAll() {
+        return timeSlotRepo.findAllByOrderByDateAscStartTimeAsc();
+    }
 }

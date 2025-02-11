@@ -36,4 +36,8 @@ public class TimeSlotController {
         return ResponseEntity.ok("Time slot deleted successfully");
     }
 
+    @GetMapping("/all")
+    public List<TimeSlot> getAll() {
+        return service.getAll();
+    }
 }
