@@ -110,11 +110,7 @@ input {
   .loginContent{
    width: 80%;
   }
-  }
-  /* @media (max-width: 300px) {
   .underText{
-    
+    font-size: 10px;
   }
-  } */
-
-  
+  }
