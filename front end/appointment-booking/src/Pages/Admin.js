@@ -45,6 +45,16 @@ export default function Admin() {
     const startTimeWithSeconds = `${startTime}:00`;
     const endTimeWithSeconds = `${endTime}:00`;
 
+    console.log("User Input:");
+    console.log("Date:", date);
+    console.log("Start Time:", startTime);
+    console.log("End Time:", endTime);
+
+    console.log("Formatted Values:");
+    console.log("Formatted Date:", formattedDate);
+    console.log("Formatted Start Time:", startTimeWithSeconds);
+    console.log("Formatted End Time:", endTimeWithSeconds);
+
     try {
       const email = localStorage.getItem("userEmail");
       const password = localStorage.getItem("password");
@@ -55,6 +65,12 @@ export default function Admin() {
       }
 
       const authHeader = `Basic ${btoa(`${email}:${password}`)}`;
+      
+      console.log("Sending API request with data:", {
+        date: formattedDate,
+        startTime: startTimeWithSeconds,
+        endTime: endTimeWithSeconds,
+      });
 
       const response = await axios.post(
         "http://localhost:8080/timeslot/create",
