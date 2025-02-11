@@ -54,7 +54,7 @@ export default function TimeSlots() {
         </tbody>
       </table>
       <button className="backButton" onClick={handleBack}>
-        Back to Admin Panel
+        Admin Panel
       </button>
     </div>
   );
