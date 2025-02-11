@@ -28,4 +28,10 @@ public class AppointmentController {
     public List<AppointmentDto> getAllAppointments() {
         return service.getAllAppointments();
     }
+
+    @DeleteMapping("/delete/{appointmentId}")
+    public void deleteAppointment(@PathVariable Integer appointmentId) {
+        service.deleteAppointment(appointmentId);
+    }
+
 }

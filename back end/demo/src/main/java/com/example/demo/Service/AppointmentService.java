@@ -59,4 +59,12 @@ public class AppointmentService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    public void deleteAppointment(Integer appointmentId) {
+        if (!appointmentRepo.existsById(appointmentId)) {
+            throw new RuntimeException("Appointment not found");
+        }
+        appointmentRepo.deleteById(appointmentId);
+    }
+
 }

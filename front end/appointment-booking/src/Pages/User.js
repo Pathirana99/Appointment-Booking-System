@@ -16,7 +16,6 @@ export default function User() {
       const decodedJwt = jwtDecode(jwt);
       setUsername(decodedJwt.username);
       setEmail(decodedJwt.email);
-
       fetchAppointments(decodedJwt.userId);
     }
   }, []);
@@ -42,6 +41,25 @@ export default function User() {
       console.error("Error fetching appointments:", error);
       alert("Failed to fetch appointments.");
     }
+  };
+
+  const handleDeleteAppointment = async (appointmentId) => {
+    
+      const email = localStorage.getItem("userEmail");
+      const password = localStorage.getItem("password");
+
+      if (!email || !password) {
+        alert("Authentication error. Please log in again.");
+        return;
+      }
+
+      const authHeader = `Basic ${btoa(`${email}:${password}`)}`;
+
+      await axios.delete(`http://localhost:8080/appointment/delete/${appointmentId}`, {
+        headers: { Authorization: authHeader },
+      });
+
+      setAppointments(appointments.filter((appointment) => appointment.id !== appointmentId));
   };
 
   const handleLogout = () => {
@@ -74,6 +92,7 @@ export default function User() {
               <th>Phone</th>
               <th>Date</th>
               <th>Time</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -85,13 +104,15 @@ export default function User() {
                 <td>{appointment.date}</td>
                 <td>{appointment.time}</td>
                 <td>
-                  <button className="deleteButton">DELETE</button>
+                  <button className="deleteButton" onClick={() => handleDeleteAppointment(appointment.id)}>
+                    DELETE
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        
+
         <button className="logOut" onClick={handleLogout}>
           Log Out
         </button>
