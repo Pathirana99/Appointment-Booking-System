@@ -127,7 +127,7 @@ export default function Admin() {
             ADD AVAILABLE TIME
           </button>
           <button className="add2" type="button" onClick={handleTimeSlots}>
-            SHOW TIME SLOTS
+            VIEW TIME SLOTS
           </button>
         </form>
 

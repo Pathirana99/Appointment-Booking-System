@@ -105,7 +105,7 @@ export default function User() {
                 <td>{appointment.time}</td>
                 <td>
                   <button className="deleteButton" onClick={() => handleDeleteAppointment(appointment.id)}>
-                    DELETE
+                    CANCEL
                   </button>
                 </td>
               </tr>
