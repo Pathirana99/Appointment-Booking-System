@@ -18,7 +18,7 @@ public class SignUpMail {
             SimpleMailMessage signMessage = new SimpleMailMessage();
             signMessage.setSubject("Welcome to Appointment Booking System!");
             signMessage.setTo(loginUserDto.getEmail());
-            signMessage.setFrom("sunithkaushalya.pp@gmail.com"); // Ensure this matches your SMTP config
+            signMessage.setFrom("sunithkaushalya.pp@gmail.com");
             signMessage.setText("Hello " + loginUserDto.getUsername() + ",\n\n"
                     + "Congratulations! You have successfully registered on us.\n\n"
                     + "Best Regards,\nTeam");
@@ -31,4 +31,21 @@ public class SignUpMail {
         }
     }
 
+    public void sendAppointmentEmail(String email, AppointmentWithEmailDto appointmentDto) {
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(email);
+            message.setSubject("Appointment Confirmation");
+            message.setFrom("sunithkaushalya.pp@gmail.com");
+            message.setText("Dear " + appointmentDto.getName() + ",\n\n"
+                    + "Your appointment has been successfully scheduled on " + appointmentDto.getDate() + " at " + appointmentDto.getTime() + ".\n\n"
+                    + "Best regards,\n"
+                    + "Appointment Booking System");
+
+            mailSender.send(message);
+            System.out.println("Appointment email sent successfully to " + email);
+        } catch (Exception e) {
+            System.err.println("Error sending appointment email: " + e.getMessage());
+        }
+    }
 }

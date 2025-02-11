@@ -15,4 +15,5 @@ public class AppointmentWithEmailDto {
     private Time time;
     private String name;
     private Long contact;
+    private String email;
 }

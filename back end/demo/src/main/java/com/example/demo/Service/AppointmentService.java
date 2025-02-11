@@ -6,6 +6,7 @@ import com.example.demo.Entity.Appointment;
 import com.example.demo.Entity.User;
 import com.example.demo.Repo.AppointmentRepo;
 import com.example.demo.Repo.UserRepo;
+import com.example.demo.Utill.SignUpMail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,8 @@ public class AppointmentService {
     AppointmentRepo appointmentRepo;
     @Autowired
     UserRepo userRepo;
+    @Autowired
+    SignUpMail signUpMail;
 
 
     public AppointmentWithEmailDto saveAppointment(AppointmentWithEmailDto appointmentWithEmailDto, Integer userId) {
@@ -33,6 +36,12 @@ public class AppointmentService {
 
         appointment = appointmentRepo.save(appointment);
         appointmentWithEmailDto.setId(appointment.getId());
+        try {
+            signUpMail.sendAppointmentEmail(user.getEmail(), appointmentWithEmailDto);
+        } catch (Exception e) {
+            System.err.println("Failed to send appointment email: " + e.getMessage());
+        }
+
         return appointmentWithEmailDto;
     }
 
