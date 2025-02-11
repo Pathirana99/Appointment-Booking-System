@@ -62,11 +62,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user/save", "/loginUser/login",
-                                "/appointment/save/{userid}", "/appointment/user/{userId}",
-                                "/timeslot/delete", "/timeslot/get/{date}",
-                                "/appointment/all","/timeslot/create").permitAll()
-                        //.requestMatchers("/admin/all", "/admin/count").hasRole("ADMIN")
+                        .requestMatchers("/user/save", "/loginUser/login", "/timeslot/delete", "/timeslot/get/{date}","/appointment/save/{userid}").permitAll()
+                        .requestMatchers("/appointment/all","/timeslot/create").hasRole("ADMIN")
+                        .requestMatchers("/appointment/user/{userId}").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .httpBasic(withDefaults());

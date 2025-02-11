@@ -9,8 +9,20 @@ export default function Admin() {
   const [endTime, setEndTime] = useState("");
 
   useEffect(() => {
+    const email = localStorage.getItem("userEmail");
+    const password = localStorage.getItem("password");
+
+    if (!email || !password) {
+      console.error("No credentials found.");
+      return;
+    }
+
+    const authHeader = `Basic ${btoa(`${email}:${password}`)}`;
+
     axios
-      .get("http://localhost:8080/appointment/all")
+      .get("http://localhost:8080/appointment/all", {
+        headers: { Authorization: authHeader },
+      })
       .then((response) => {
         setAppointments(response.data);
       })
@@ -19,40 +31,56 @@ export default function Admin() {
       });
   }, []);
 
-  const handleaddtime = async (event) => {
+  const handleAddTime = async (event) => {
     event.preventDefault();
-  
-    // Add ':00' for seconds in the time
-    const startTimeWithSeconds = startTime + ":00";
-    const endTimeWithSeconds = endTime + ":00";
-  
+
+    if (!date || !startTime || !endTime) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    const formattedDate = new Date(date).toISOString().split("T")[0];
+    const startTimeWithSeconds = `${startTime}:00`;
+    const endTimeWithSeconds = `${endTime}:00`;
+
     try {
-      // Assuming you have a stored JWT token
-      const token = localStorage.getItem("authToken"); // or sessionStorage, or any other place where you store the token
-  
-      await axios.post(
+      const email = localStorage.getItem("userEmail");
+      const password = localStorage.getItem("password");
+
+      if (!email || !password) {
+        alert("Authentication error. Please log in again.");
+        return;
+      }
+
+      const authHeader = `Basic ${btoa(`${email}:${password}`)}`;
+
+      const response = await axios.post(
         "http://localhost:8080/timeslot/create",
         {
-          date: date,
+          date: formattedDate,
           startTime: startTimeWithSeconds,
           endTime: endTimeWithSeconds,
         },
         {
-          headers: {
-            Authorization: `Bearer ${token}`, // Send the token in the Authorization header
-          },
+          headers: { Authorization: authHeader },
         }
       );
-  
-      // Clear the form fields after successful submission
+
+      console.log("Response:", response.data);
       setDate("");
       setStartTime("");
       setEndTime("");
+      alert("Time slot added successfully!");
     } catch (error) {
       console.error("Error adding time slot:", error);
+      alert("Failed to add time slot.");
     }
   };
-  
+
+  const handleLogout = () => {
+    localStorage.clear(); // Clears all stored data
+    window.location.href = "/";
+  };
 
   return (
     <div className="home1">
@@ -86,11 +114,7 @@ export default function Admin() {
               />
             </div>
           </div>
-          <button
-            className="add1"
-            type="submit"
-            onClick={handleaddtime}
-          >
+          <button className="add1" type="submit" onClick={handleAddTime}>
             ADD AVAILABLE TIME
           </button>
         </form>
@@ -120,7 +144,9 @@ export default function Admin() {
           </table>
         </div>
 
-        <button className="logOut1">Log Out</button>
+        <button className="logOut1" onClick={handleLogout}>
+          Log Out
+        </button>
       </div>
     </div>
   );

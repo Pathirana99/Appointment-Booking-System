@@ -50,6 +50,7 @@ export default function SignUp() {
 
       localStorage.setItem("username", decodedUsername);
       localStorage.setItem("userEmail", userEmail);
+      localStorage.setItem("password", password);
 
       if (role === "USER") {
         navigate("/User");

@@ -57,6 +57,8 @@ export default function Login() {
 
       localStorage.setItem("username", username);
       localStorage.setItem("userEmail", userEmail);
+      localStorage.setItem("password", password);
+
 
       if (role === "USER") {
         navigate("/User");
