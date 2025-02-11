@@ -4,8 +4,6 @@ import "./appointment.css";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
-
-
 export default function Appointment() {
   const [timeSlots, setTimeSlots] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
@@ -15,22 +13,37 @@ export default function Appointment() {
   const [userId, setId] = useState("");
   const navigate = useNavigate();
 
+  // Retrieve Basic Auth credentials
+  const email = localStorage.getItem("userEmail");
+  const password = localStorage.getItem("password");
+
+  if (!email || !password) {
+    alert("Authentication error. Please log in again.");
+    navigate("/");
+  }
+
+  const authHeader = `Basic ${btoa(`${email}:${password}`)}`;
+
   // Fetch time slots for the selected date
   const fetchTimeSlots = async (date) => {
     try {
-      const response = await axios.get(`http://localhost:8080/timeslot/get/${date}`);
+      const response = await axios.get(`http://localhost:8080/timeslot/get/${date}`, {
+        headers: { Authorization: authHeader },
+      });
       setTimeSlots(response.data);
     } catch (error) {
       console.error("Error fetching time slots:", error);
+      alert("Failed to fetch time slots.");
     }
   };
-   useEffect(() => {
-      const jwt = localStorage.getItem("jwt");
-      if (jwt) {
-        const decodedJwt = jwtDecode(jwt);
-        setId(decodedJwt.userId);
-      }
-    }, []);
+
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      const decodedJwt = jwtDecode(jwt);
+      setId(decodedJwt.userId);
+    }
+  }, []);
 
   const handleDateChange = (event) => {
     const date = event.target.value;
@@ -42,7 +55,7 @@ export default function Appointment() {
     setSelectedTime(time);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!name || !contact || !selectedDate || !selectedTime) {
@@ -54,6 +67,7 @@ export default function Appointment() {
       alert("User is not logged in.");
       return;
     }
+
     const appointmentData = {
       name,
       contact,
@@ -61,26 +75,28 @@ export default function Appointment() {
       time: selectedTime,
     };
 
-    axios
-      .post(`http://localhost:8080/appointment/save/${userId}`, appointmentData)
-      .then((response) => {
-        deleteTimeSlot(selectedDate, selectedTime);
-        navigate("/User");
-      })
-      .catch((error) => {
-        console.error("Error booking appointment:", error);
+    try {
+      await axios.post(`http://localhost:8080/appointment/save/${userId}`, appointmentData, {
+        headers: { Authorization: authHeader },
       });
+
+      await deleteTimeSlot(selectedDate, selectedTime);
+      navigate("/User");
+    } catch (error) {
+      console.error("Error booking appointment:", error);
+      alert("Failed to book the appointment.");
+    }
   };
 
-  const deleteTimeSlot = (date, time) => {
-    axios
-      .delete(`http://localhost:8080/timeslot/delete?date=${date}&startTime=${time}`)
-      .then((response) => {
-        console.log("Time slot deleted successfully:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error deleting time slot:", error);
+  const deleteTimeSlot = async (date, time) => {
+    try {
+      await axios.delete(`http://localhost:8080/timeslot/delete?date=${date}&startTime=${time}`, {
+        headers: { Authorization: authHeader },
       });
+    } catch (error) {
+      console.error("Error deleting time slot:", error);
+      alert("Failed to delete the time slot.");
+    }
   };
 
   return (
