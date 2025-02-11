@@ -82,4 +82,55 @@
   .submit:hover {
     background-color: #d32f2f;
   }
+  @media (max-width: 768px) {
+    .Form {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .Header h2 {
+      font-size: 24px;
+    }
+  
+    .Group label {
+      font-size: 14px;
+    }
+  
+    .Group input {
+      font-size: 13px;
+      padding: 8px;
+    }
+  
+    .timeSlot {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  
+    .submit {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .Form {
+      width: 100%;
+    }
+  
+    .timeSlots {
+      flex-direction: column;
+    }
+  
+    .timeSlot {
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+  
+    .submit {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
   
