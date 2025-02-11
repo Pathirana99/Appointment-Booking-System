@@ -13,7 +13,6 @@ export default function Appointment() {
   const [userId, setId] = useState("");
   const navigate = useNavigate();
 
-  // Retrieve Basic Auth credentials
   const email = localStorage.getItem("userEmail");
   const password = localStorage.getItem("password");
 
@@ -24,7 +23,6 @@ export default function Appointment() {
 
   const authHeader = `Basic ${btoa(`${email}:${password}`)}`;
 
-  // Fetch time slots for the selected date
   const fetchTimeSlots = async (date) => {
     try {
       const response = await axios.get(`http://localhost:8080/timeslot/get/${date}`, {
@@ -33,7 +31,6 @@ export default function Appointment() {
       setTimeSlots(response.data);
     } catch (error) {
       console.error("Error fetching time slots:", error);
-      alert("Failed to fetch time slots.");
     }
   };
 
@@ -59,7 +56,7 @@ export default function Appointment() {
     event.preventDefault();
 
     if (!name || !contact || !selectedDate || !selectedTime) {
-      alert("Please fill all the fields and select a time slot.");
+      alert("Please fill all the fields");
       return;
     }
 

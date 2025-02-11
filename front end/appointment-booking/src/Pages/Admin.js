@@ -78,7 +78,10 @@ export default function Admin() {
   };
 
   const handleLogout = () => {
-    localStorage.clear(); // Clears all stored data
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("username");
+    localStorage.removeItem("userEmail");
+    localStorage.removeItem("password");
     window.location.href = "/";
   };
 
