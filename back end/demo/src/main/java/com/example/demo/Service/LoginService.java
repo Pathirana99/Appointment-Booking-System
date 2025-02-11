@@ -33,7 +33,6 @@ public class LoginService implements UserDetailsService {
                 new SimpleGrantedAuthority("ROLE_" + user.getRole().toUpperCase())
         );
 
-        // Fully qualify Spring Security User class
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getEmail())
                 .password(user.getPassword())

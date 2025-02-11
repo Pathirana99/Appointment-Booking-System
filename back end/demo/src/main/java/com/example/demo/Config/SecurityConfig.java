@@ -62,8 +62,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user/save", "/loginUser/login").permitAll()
-                        //.requestMatchers("/admin/all", "/admin/count").hasRole("ADMIN")
+                        .requestMatchers("/user/save", "/loginUser/login", "/timeslot/delete", "/timeslot/get/{date}","/timeslot/all").permitAll()
+                        .requestMatchers("/appointment/all","/timeslot/create").hasRole("ADMIN")
+                        .requestMatchers("/appointment/save/{userid}","/appointment/user/{userId}","/appointment/delete/{appointmentId}").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .httpBasic(withDefaults());
@@ -92,11 +93,11 @@ public class SecurityConfig {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true); // Allow credentials (cookies, Authorization headers)
-        config.addAllowedOrigin("http://localhost:3000"); // Frontend origin
-        config.addAllowedHeader("*"); // Allow all headers
-        config.addAllowedMethod("*"); // Allow all HTTP methods
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
-        return new CorsFilter(source); // Use Spring's CorsFilter
+        return new CorsFilter(source);
     }
 }
