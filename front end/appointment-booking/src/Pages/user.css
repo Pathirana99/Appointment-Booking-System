@@ -157,3 +157,25 @@ body {
     font-size: 13px;
   }
 }
+@media (max-width: 576px) {
+  .mainContent {
+    width: 100%;
+  }
+
+  .userTable th,
+  .userTable td {
+    padding: 5px;
+    font-size: 10px;
+  }
+
+  .deleteButton {
+    font-size: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }  
+
+  .userTable td {
+    font-size: small;
+  }
+}
+
