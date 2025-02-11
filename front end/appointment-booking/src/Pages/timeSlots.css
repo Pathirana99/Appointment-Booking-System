@@ -70,3 +70,8 @@ body {
     background-color: #046c1b;
   }
   
+  @media (max-width: 576px) {
+ .text1{
+  font-size: 25px;
+ }
+  }
