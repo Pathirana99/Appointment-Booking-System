@@ -1,14 +1,14 @@
 import "./admin.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 export default function Admin() {
   const [appointments, setAppointments] = useState([]);
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const email = localStorage.getItem("userEmail");
@@ -88,7 +88,7 @@ export default function Admin() {
   };
 
   const handleTimeSlots = () => {
-    navigate("/TimeSlots"); // Use navigate to go to TimeSlots page
+    navigate("/TimeSlots");
   };
 
   return (

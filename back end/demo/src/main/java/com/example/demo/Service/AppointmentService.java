@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 import com.example.demo.Dto.AppointmentDto;
+import com.example.demo.Dto.AppointmentWithEmailDto;
 import com.example.demo.Entity.Appointment;
 import com.example.demo.Entity.User;
 import com.example.demo.Repo.AppointmentRepo;
@@ -18,20 +19,21 @@ public class AppointmentService {
     @Autowired
     UserRepo userRepo;
 
-    public AppointmentDto saveAppointment(AppointmentDto appointmentDto, Integer userId) {
+
+    public AppointmentWithEmailDto saveAppointment(AppointmentWithEmailDto appointmentWithEmailDto, Integer userId) {
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Appointment appointment = new Appointment();
-        appointment.setDate(appointmentDto.getDate());
-        appointment.setTime(appointmentDto.getTime());
-        appointment.setName(appointmentDto.getName());
-        appointment.setContact(appointmentDto.getContact());
+        appointment.setDate(appointmentWithEmailDto.getDate());
+        appointment.setTime(appointmentWithEmailDto.getTime());
+        appointment.setName(appointmentWithEmailDto.getName());
+        appointment.setContact(appointmentWithEmailDto.getContact());
         appointment.setUser(user);
 
         appointment = appointmentRepo.save(appointment);
-        appointmentDto.setId(appointment.getId());
-        return appointmentDto;
+        appointmentWithEmailDto.setId(appointment.getId());
+        return appointmentWithEmailDto;
     }
 
     public List<AppointmentDto> getAppointment(Integer userId) {

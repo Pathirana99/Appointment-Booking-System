@@ -39,7 +39,7 @@ export default function User() {
       setAppointments(response.data);
     } catch (error) {
       console.error("Error fetching appointments:", error);
-      alert("Failed to fetch appointments.");
+      
     }
   };
 
