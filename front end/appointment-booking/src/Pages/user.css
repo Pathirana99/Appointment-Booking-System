@@ -129,6 +129,19 @@ body {
   background-color: #c62828;
   transform: translateY(-2px);
 }
+.changePasswordButton {
+  background-color: #4caf50;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: bold;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin: 5px;
+  height: 20px;
+  width: auto;
+}
 
 @media (max-width: 768px) {
   .mainContent {

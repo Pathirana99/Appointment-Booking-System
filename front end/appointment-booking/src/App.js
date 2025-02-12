@@ -8,6 +8,7 @@ import Admin from "./Pages/Admin";
 import Appointment from "./Pages/Appointment";
 import TimeSlots from "./Pages/TimeSlots";
 import LoadingPage from "./Component/LoadingPage";
+import ChangePassword from "./Component/ChangePassword";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -15,7 +16,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 1000);
   }, []);
   return (
     <Router>
@@ -30,6 +31,7 @@ function App() {
             <Route path="/Admin" element={<Admin />} />
             <Route path="/Appointment" element={<Appointment />} />
             <Route path="/TimeSlots" element={<TimeSlots />} />
+            <Route path="/ChangePassword" element={<ChangePassword/>}/>
           </Routes>
         )}
       </div>

@@ -64,7 +64,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/user/save", "/loginUser/login", "/timeslot/delete", "/timeslot/get/{date}").permitAll()
                         .requestMatchers("/appointment/all","/timeslot/create","/timeslot/all").hasRole("ADMIN")
-                        .requestMatchers("/appointment/save/{userid}","/appointment/user/{userId}","/appointment/delete/{appointmentId}").hasRole("USER")
+                        .requestMatchers("/appointment/save/{userid}","/appointment/user/{userId}","/appointment/delete/{appointmentId}","/user/{id}").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .httpBasic(withDefaults());

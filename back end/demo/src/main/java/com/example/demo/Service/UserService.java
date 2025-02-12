@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -34,4 +36,21 @@ public class UserService {
 
         return new returnUserDto(user.getId(), user.getUsername(), user.getEmail(), user.getRole());
     }
+
+    public boolean changePassword(Integer id, String currentPassword, String newPassword) {
+        Optional<User> optionalUser = userRepo.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+
+            if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
+                throw new RuntimeException("Current password is incorrect.");
+            }
+
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepo.save(user);
+            return true;
+        }
+        return false;
+    }
+
 }
