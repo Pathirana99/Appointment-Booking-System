@@ -1,14 +1,14 @@
 import "./admin.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 export default function Admin() {
   const [appointments, setAppointments] = useState([]);
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const email = localStorage.getItem("userEmail");
@@ -45,6 +45,16 @@ export default function Admin() {
     const startTimeWithSeconds = `${startTime}:00`;
     const endTimeWithSeconds = `${endTime}:00`;
 
+    console.log("User Input:");
+    console.log("Date:", date);
+    console.log("Start Time:", startTime);
+    console.log("End Time:", endTime);
+
+    console.log("Formatted Values:");
+    console.log("Formatted Date:", formattedDate);
+    console.log("Formatted Start Time:", startTimeWithSeconds);
+    console.log("Formatted End Time:", endTimeWithSeconds);
+
     try {
       const email = localStorage.getItem("userEmail");
       const password = localStorage.getItem("password");
@@ -55,6 +65,12 @@ export default function Admin() {
       }
 
       const authHeader = `Basic ${btoa(`${email}:${password}`)}`;
+      
+      console.log("Sending API request with data:", {
+        date: formattedDate,
+        startTime: startTimeWithSeconds,
+        endTime: endTimeWithSeconds,
+      });
 
       const response = await axios.post(
         "http://localhost:8080/timeslot/create",
@@ -88,7 +104,7 @@ export default function Admin() {
   };
 
   const handleTimeSlots = () => {
-    navigate("/TimeSlots"); // Use navigate to go to TimeSlots page
+    navigate("/TimeSlots");
   };
 
   return (
@@ -127,7 +143,7 @@ export default function Admin() {
             ADD AVAILABLE TIME
           </button>
           <button className="add2" type="button" onClick={handleTimeSlots}>
-            SHOW TIME SLOTS
+            VIEW TIME SLOTS
           </button>
         </form>
 

@@ -70,6 +70,7 @@ export default function Appointment() {
       contact,
       date: selectedDate,
       time: selectedTime,
+      email:email,
     };
 
     try {

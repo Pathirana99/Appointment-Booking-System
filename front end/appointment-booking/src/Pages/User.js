@@ -39,7 +39,7 @@ export default function User() {
       setAppointments(response.data);
     } catch (error) {
       console.error("Error fetching appointments:", error);
-      alert("Failed to fetch appointments.");
+      
     }
   };
 
@@ -105,7 +105,7 @@ export default function User() {
                 <td>{appointment.time}</td>
                 <td>
                   <button className="deleteButton" onClick={() => handleDeleteAppointment(appointment.id)}>
-                    DELETE
+                    CANCEL
                   </button>
                 </td>
               </tr>
