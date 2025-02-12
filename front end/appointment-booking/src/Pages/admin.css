@@ -78,22 +78,22 @@ body {
 
 .add1 {
   padding: 12px 30px;
-  background-color: #ff5722;
+  background-color: #ff4d4d;
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
   text-align: center;
-  width: 100%;
+  margin-top: 10px;
 }
 
 .add1:hover {
-  background-color: #e64a19;
+  background-color:#e60000;
 }
 .add2 {
   padding: 12px 30px;
-  background-color: #02881f;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 8px;
@@ -103,7 +103,7 @@ body {
   margin-top: 10px;
 }
 .add2:hover {
-  background-color: #046c1b;
+  background-color: #388e3c;
 }
 .tableContainer1 {
   max-height: 400px;
@@ -161,6 +161,17 @@ body {
 .logOut1:hover {
   background-color: #b71c1c;
 }
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+.add1,
+.add2 {
+  flex: 1;
+  width: auto;
+}
 
 @media (max-width: 768px) {
   .fieldsContainer1 {
@@ -172,10 +183,6 @@ body {
     width: 100%;
   }
 
-  .add1 {
-    width: 100%;
-  }
-
   .logOut1 {
     width: 100%;
   }
@@ -184,4 +191,9 @@ body {
   .admin1 {
     font-size: 20px;
   }
+  .add1,
+.add2 {
+  height: 40px;
+  font-size: x-small;
+}
 }

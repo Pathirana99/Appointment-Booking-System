@@ -84,6 +84,11 @@ export default function User() {
           To get an appointment
         </button>
 
+        <button className="changePasswordButton" onClick={() => navigate("/ChangePassword")}>
+  Change Password
+</button>
+
+
         <table className="userTable">
           <thead>
             <tr>

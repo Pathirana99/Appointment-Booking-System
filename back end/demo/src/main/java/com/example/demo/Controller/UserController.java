@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -36,4 +37,21 @@ public class UserController {
         AuthenticationResponse authResponse = new AuthenticationResponse(jwt, savedUser.getRole());
         return new ResponseEntity<>(authResponse, HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> changePassword(@PathVariable Integer id, @RequestBody Map<String, String> passwords) {
+        try {
+            boolean isUpdated = userService.changePassword(id, passwords.get("currentPassword"), passwords.get("newPassword"));
+            if (isUpdated) {
+                return ResponseEntity.ok("Password updated successfully.");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+            }
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+    }
+
+
+
 }

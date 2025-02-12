@@ -139,12 +139,15 @@ export default function Admin() {
               />
             </div>
           </div>
-          <button className="add1" type="submit" onClick={handleAddTime}>
-            ADD AVAILABLE TIME
-          </button>
-          <button className="add2" type="button" onClick={handleTimeSlots}>
-            VIEW TIME SLOTS
-          </button>
+          <div className="buttonContainer">
+  <button className="add1" type="submit" onClick={handleAddTime}>
+    ADD AVAILABLE TIME
+  </button>
+  <button className="add2" type="button" onClick={handleTimeSlots}>
+    VIEW TIME SLOTS
+  </button>
+</div>
+
         </form>
 
         <div className="tableContainer1">
