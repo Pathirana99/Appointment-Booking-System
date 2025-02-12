@@ -56,6 +56,7 @@ signMessage.setFrom("your brevo email");
     <li><strong>Authentication & Validation:</strong>
       <ul>
         <li>Email and field validation for login and signup.</li>
+        <li>Password validation for change password</li>
         <li>Upon successful registration, a confirmation email is sent to the user's email.</li>
       </ul>
     </li>
@@ -69,6 +70,7 @@ signMessage.setFrom("your brevo email");
         <li>Users can see available time slots for a selected date.</li>
         <li>A user cannot book multiple appointments in the same time slot.</li>
         <li>When an appointment is booked, the user receives an email with appointment details.</li>
+        <li>User can change their password</li>
       </ul>
     </li>
     <li><strong>User Profile:</strong>
