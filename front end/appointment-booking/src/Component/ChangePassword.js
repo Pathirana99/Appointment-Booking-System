@@ -71,7 +71,12 @@ export default function ChangePassword() {
     }
   };
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   return (
+    <div className="pageFull">
     <div className="changePasswordContainer">
       <h2>Change Password</h2>
       {error && <p className="errorMessage">{error}</p>}
@@ -106,7 +111,8 @@ export default function ChangePassword() {
         </div>
         <button type="submit">Change Password</button>
       </form>
-      <button onClick={() => navigate("/")}>Back</button>
+      <button onClick={handleBack}>Back</button>
+    </div>
     </div>
   );
 }
